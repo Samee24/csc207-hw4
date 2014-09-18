@@ -73,8 +73,8 @@ public class Calculator {
 			char operation;
 			interResult = inter.toString(); // The intermediate result
 			applicand = data[index + 1]; // The number on which the
-											// operation will be applied with
-											// interResult
+				                    // operation will be applied with
+						   // interResult
 			operation = data[index].charAt(0);// Operation
 
 			inter = processMathFrac(interResult, applicand, operation, inter);
