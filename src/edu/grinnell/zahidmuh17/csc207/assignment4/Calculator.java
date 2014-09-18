@@ -5,16 +5,6 @@ import java.util.Arrays;
 
 public class Calculator {
 
-	public static void main(String[] args) {
-		try {
-			System.out.println(eval1("1/2 + 1/4"));
-			System.out.println(new Fraction("3/4"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("Please format your input correctly!");
-		}
-	}
 
 	public static BigInteger eval0(String input) throws Exception {
 
