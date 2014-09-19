@@ -3,114 +3,128 @@ package edu.grinnell.csc207.zahidmuh17.hw4;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class StringUtils {
+public class StringUtils
+{
 
-	public static void main(String[] args) {
+  public static void main(String[] args)
+  {
 
-		System.out.print(Arrays.toString(splitAt("a:", ':')));
+    System.out.print(Arrays.toString(splitAt("a:", ':')));
 
-	}
+  }// main
 
-	public static String[] splitAt(String stringWithSomeChar, char someChar) {
+  public static String[] splitAt(String stringWithSomeChar, char someChar)
+  {
 
-		//Buffer to help us build strings
-		StringBuffer buffer = new StringBuffer("");
-		//Need a dynamic list to add elements
-		ArrayList<String> arrayList = new ArrayList<String>();
-		
-		//This keeps track of when c occurs in the string
-		int tracker = 0;
-		
-		
-		//Loop through all characters
-		for (int index = 0; index < stringWithSomeChar.length(); index++){
-			
-			//Reference the currentchar since we reference it multiple times
-			char currentChar = stringWithSomeChar.charAt(index);
-			if (currentChar == someChar){
-				
-				arrayList.add(stringWithSomeChar.substring(tracker, index));
-				//Update tracker, since substrings are inclusive of the bottom index
-				tracker = index + 1;
-			}//if
-			
-			//Special case for our last substring
-			if (index == stringWithSomeChar.length() - 1){
-				arrayList.add(stringWithSomeChar.substring(tracker));
-				
-			}//if
-				
-		}//for
-		
-		//Transform to a String[]
-		return transferFromArrayList(arrayList);
-		
-	}//splitAt(String stringWithSomeChar, char someChar)
+    //Buffer to help us build strings
+    StringBuffer buffer = new StringBuffer("");
+    //Need a dynamic list to add elements
+    ArrayList<String> arrayList = new ArrayList<String>();
 
-	public static String[] splitCSV(String input) {
+    //This keeps track of when c occurs in the string
+    int tracker = 0;
 
-		boolean inQuote = false;
-		// Use arrayList since we need a dynamic list
-		ArrayList<String> arrayList = new ArrayList<String>();
-		// Buffer to build our string elements
-		StringBuffer buffer = new StringBuffer("");
+    //Loop through all characters
+    for (int index = 0; index < stringWithSomeChar.length(); index++)
+      {
 
-		for (int index = 0; index < input.length(); index++) {
+        //Reference the currentchar since we reference it multiple times
+        char currentChar = stringWithSomeChar.charAt(index);
+        if (currentChar == someChar)
+          {
 
-			char currentChar = input.charAt(index);
-			System.out.println(currentChar);
+            arrayList.add(stringWithSomeChar.substring(tracker, index));
+            //Update tracker, since substrings are inclusive of the bottom index
+            tracker = index + 1;
+          }//ends if
 
-			// When we actually use the comma as a separator and when aren't in
-			// a quote
-			if ((currentChar == ',') && !inQuote) {
-				arrayList.add(buffer.toString());
-				buffer = new StringBuffer("");
-			}//if
-			// Special case: Last element
-			else if (index == input.length() - 1) {
+        //Special case for our last substring
+        if (index == stringWithSomeChar.length() - 1)
+          {
+            arrayList.add(stringWithSomeChar.substring(tracker));
 
-				buffer.append(currentChar);
-				arrayList.add(buffer.toString());
-				buffer = new StringBuffer("");
+          }//ends if
 
-			}//else if
-			// Special case for two consecutive double quotes
-			else if (currentChar == '\"' && input.charAt(index + 1) == '\"') {
+      }//ends for
 
-				index++;
-				buffer.append(currentChar);
+    //Transform to a String[]
+    return transferFromArrayList(arrayList);
 
-			}//else if
-			// Case when there's a single quote, indicating we're either
-				// starting or ending a quote
-			else if (currentChar == '\"') {
-				// Toggle the boolean
-				inQuote = (inQuote) ? false : true;
+  }//splitAt(String stringWithSomeChar, char someChar)
 
-			}//else if
-			else {
-				buffer.append(currentChar);
+  public static String[] splitCSV(String input)
+  {
 
-			}//else
+    boolean inQuote = false;
+    // Use arrayList since we need a dynamic list
+    ArrayList<String> arrayList = new ArrayList<String>();
+    // Buffer to build our string elements
+    StringBuffer buffer = new StringBuffer("");
 
-		}//for
+    for (int index = 0; index < input.length(); index++)
+      {
 
-		return transferFromArrayList(arrayList);
-	}//splitCSV(String input)
+        char currentChar = input.charAt(index);
+        System.out.println(currentChar);
 
-	// Helper method to transfer data from an arrayList to a String[]
-	public static String[] transferFromArrayList(ArrayList<String> stringArray) {
+        // When we actually use the comma as a separator and when aren't in
+        // a quote
+        if ((currentChar == ',') && !inQuote)
+          {
+            arrayList.add(buffer.toString());
+            buffer = new StringBuffer("");
+          }//ends if
+           // Special case: Last element
+        else if (index == input.length() - 1)
+          {
 
-		String[] result = new String[stringArray.size()];
+            buffer.append(currentChar);
+            arrayList.add(buffer.toString());
+            buffer = new StringBuffer("");
 
-		for (int indexArr = 0; indexArr < stringArray.size(); indexArr++) {
+          }//else if
+           // Special case for two consecutive double quotes
+        else if (currentChar == '\"' && input.charAt(index + 1) == '\"')
+          {
 
-			result[indexArr] = stringArray.get(indexArr);
+            index++;
+            buffer.append(currentChar);
 
-		}//for
+          }//else if
+           // Case when there's a single quote, indicating we're either
+           // starting or ending a quote
+        else if (currentChar == '\"')
+          {
+            // Toggle the boolean
+            inQuote = (inQuote) ? false : true;
 
-		return result;
+          }//ends else if
+        else
+          {
+            buffer.append(currentChar);
 
-	}//transferFromArrayList(ArrayList<String> stringArray)
+          }//ends else
 
-}
+      }//ends for
+
+    return transferFromArrayList(arrayList);
+  }//splitCSV(String input)
+
+  // Helper method to transfer data from an arrayList to a String[]
+  public static String[] transferFromArrayList(ArrayList<String> stringArray)
+  {
+
+    String[] result = new String[stringArray.size()];
+
+    for (int indexArr = 0; indexArr < stringArray.size(); indexArr++)
+      {
+
+        result[indexArr] = stringArray.get(indexArr);
+
+      }//ends for
+
+    return result;
+
+  }//transferFromArrayList(ArrayList<String> stringArray)
+
+}// StringUtils

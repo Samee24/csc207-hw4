@@ -11,8 +11,7 @@ import java.math.BigInteger;
  */
 public class Fraction
 {
-  
-  
+
   public static void main(String[] args)
   {
     System.out.println("Hello, World");
@@ -20,7 +19,8 @@ public class Fraction
     f = f.pow(2);
     System.out.println(f.num);
     System.out.println(f.denom);
-  }
+  }//main
+
   // +------------------+---------------------------------------------
   // | Design Decisions |
   // +------------------+
@@ -52,40 +52,42 @@ public class Fraction
    * 
    * Warning! Not yet stable.
    */
-  public Fraction (BigInteger num, BigInteger denom) 
+  public Fraction(BigInteger num, BigInteger denom)
   {
     BigInteger gcd = num.gcd(denom);
     this.num = num.divide(gcd);
-    this.denom= denom.divide(gcd);
-  } // Fraction(BigInteger, BigInteger)
-  
-  public Fraction (String num) 
-  {    
-      
-    if (num.indexOf("/") == -1){
-      
-      this.num = new BigInteger(num);
-      this.denom = new BigInteger("1");
-      
-    } else {
-    
-      String[] strng = num.split("/");
-      this.num = BigInteger.valueOf(Integer.valueOf(strng[0]));
-      this.denom = BigInteger.valueOf(Integer.valueOf(strng[1]));
-      
-    }
+    this.denom = denom.divide(gcd);
   } // Fraction(BigInteger, BigInteger)
 
-  
+  public Fraction(String num)
+  {
+
+    if (num.indexOf("/") == -1)
+      {
+
+        this.num = new BigInteger(num);
+        this.denom = new BigInteger("1");
+
+      }// end if
+    else
+      {
+
+        String[] strng = num.split("/");
+        this.num = BigInteger.valueOf(Integer.valueOf(strng[0]));
+        this.denom = BigInteger.valueOf(Integer.valueOf(strng[1]));
+
+      }// close else
+  } // Fraction(BigInteger, BigInteger)
+
   /**
    * Build a new fraction with numerator num and denominator denom.
    * 
    * Warning! Not yet stable.
    */
-  public Fraction (int num, int denom) 
+  public Fraction(int num, int denom)
   {
-    this.num = BigInteger.valueOf (num);
-    this.denom = BigInteger.valueOf (denom);
+    this.num = BigInteger.valueOf(num);
+    this.denom = BigInteger.valueOf(denom);
   } // Fraction(int, int)
 
   // +---------+------------------------------------------------------
@@ -104,12 +106,13 @@ public class Fraction
     // and addMe's denominator
     resultDenominator = this.denom.multiply(addMe.denom);
     // The numerator is more complicated
-    resultNumerator = (this.num.multiply(addMe.denom)).add(addMe.num.multiply(this.denom));
+    resultNumerator =
+        (this.num.multiply(addMe.denom)).add(addMe.num.multiply(this.denom));
 
     // Return the computed value
     return new Fraction(resultNumerator, resultDenominator);
   }// add(Fraction)
-  
+
   /**
    * Subtract the fraction from the other fraction.
    */
@@ -123,7 +126,8 @@ public class Fraction
     // and addMe's denominator
     resultDenominator = this.denom.multiply(subMe.denom);
     // The numerator is more complicated
-    resultNumerator = (this.num.multiply(subMe.denom)).subtract(subMe.num.multiply(this.denom));
+    resultNumerator =
+        (this.num.multiply(subMe.denom)).subtract(subMe.num.multiply(this.denom));
 
     // Return the computed value
     return new Fraction(resultNumerator, resultDenominator);
@@ -132,13 +136,13 @@ public class Fraction
   /**
    * Convert this fraction to a string for ease of printing.
    */
-  public String
-    toString ()
+  public String toString()
   {
     // Special case: It's zero
-    if (this.num.equals(BigInteger.ZERO)) {
-      return "0";
-    } // if it's zero
+    if (this.num.equals(BigInteger.ZERO))
+      {
+        return "0";
+      } // if it's zero
 
     // Lump together the string represention of the numerator,
     // a slash, and the string representation of the denominator
@@ -158,7 +162,7 @@ public class Fraction
     return new Fraction(resultNumerator, resultDenominator);
 
   }//multiply(Fraction multMe)
-  
+
   public Fraction pow(int exp)
   {
 
@@ -172,24 +176,25 @@ public class Fraction
     return new Fraction(resultNumerator, resultDenominator);
 
   }//pow(int exp)
-  
-  public Fraction divide(Fraction divMe)
+
+  public Fraction divide(Fraction divideMe)
   {
 
     BigInteger resultNumerator;
     BigInteger resultDenominator;
 
     //Division is just multiplication flipped
-    resultNumerator = this.num.multiply(divMe.denom);
-    resultDenominator = this.denom.multiply(divMe.num);
+    resultNumerator = this.num.multiply(divideMe.denom);
+    resultDenominator = this.denom.multiply(divideMe.num);
 
     return new Fraction(resultNumerator, resultDenominator);
 
-  }//divide(Fraction divme)
-  
-  public Fraction negate(){
-    
+  }//divide(Fraction divideMe)
+
+  public Fraction negate()
+  {
+
     return this.multiply(new Fraction("-1"));
-    
+
   }//negate()
 } // class Fraction
