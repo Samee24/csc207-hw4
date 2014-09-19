@@ -157,7 +157,7 @@ public class Fraction
 
     return new Fraction(resultNumerator, resultDenominator);
 
-  }
+  }//multiply(Fraction multMe)
   
   public Fraction pow(int exp)
   {
@@ -171,7 +171,7 @@ public class Fraction
 
     return new Fraction(resultNumerator, resultDenominator);
 
-  }
+  }//pow(int exp)
   
   public Fraction divide(Fraction divMe)
   {
@@ -185,11 +185,11 @@ public class Fraction
 
     return new Fraction(resultNumerator, resultDenominator);
 
-  }
+  }//divide(Fraction divme)
   
   public Fraction negate(){
     
     return this.multiply(new Fraction("-1"));
     
-  }
+  }//negate()
 } // class Fraction
