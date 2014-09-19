@@ -46,7 +46,7 @@ public class Calculator {
 
 		return inter;
 
-	}
+	}//eval0(String input)
 
 	public static Fraction eval1(String input) throws Exception {
 
@@ -91,7 +91,7 @@ public class Calculator {
 		System.out.println(inter.toString());
 		return inter;
 
-	}
+	}// eval1(String input)
 
 	// Helper method to parse an operation and return a Big Integer as the
 	// result of that operation and two other parsed String numbers
@@ -130,7 +130,7 @@ public class Calculator {
 
 		return currentRes;
 
-	}// processMath
+	}// processMath(String num1, String num2,char operation, BigInteger currentRes)
 
 	public static Fraction processMathFrac(String num1, String num2,
 			char operation, Fraction currentRes) throws Exception {
@@ -166,6 +166,6 @@ public class Calculator {
 
 		return currentRes;
 
-	}// processMath
+	}// processMathFrac(String num1, String num2,char operation, Fraction currentRes)
 
 }
